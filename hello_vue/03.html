@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app8">
+        <h1>{{a}}</h1>
+    </div>
+
+    <div id="app9">
+        <p>{{a}}</p>
+        <button v-on:click="a=2">Change It</button>
+    </div>
+    
+   
+    <script type="text/javascript">
+
+        Vue.config.productionTip = false
+
+        var data = {a:1}
+
+        // 会阻止修改现有的 property，也意味着响应系统无法再追踪变化。
+        // Object.freeze(data)
+
+        var vm = new Vue({
+            el:"#app8",
+            data:data
+        })
+
+       var vm2 = new Vue({
+            el:"#app9",
+            data:data
+        })
+        
+        // $watch 是一个实例方法
+        // 这个回调将在 `vm.a` 改变后调用
+        vm2.$watch('a',function(newValue, oldValue){
+            console.log("a改变")
+        })
+
+    </script>
+    
+
+</body>
+</html>

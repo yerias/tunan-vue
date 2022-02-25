@@ -10,7 +10,21 @@
 </head>
 <body>
     <div id="root">
-
+        <h1>学校信息</h1>
+        <h2>学校名称: {{school.name}}</h2>
+        <h2>学校地址: {{school.address}}</h2>
+        <h2>校长是: {{school.leader}}</h2>
+        <h1>学生信息</h1>
+        <button @click="addSex">添加一个性别属性,默认值是男</button>
+        <h2>姓名: {{student.name}}</h2>
+        <h2 v-if="student.sex">性别: {{student.sex}}</h2>
+        <h2>年龄: 最大{{student.age.maxAge}}，最小{{student.age.minAge}}</h2>
+        <h2>朋友们</h2>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}} - {{f.age}}
+            </li>
+        </ul>
     </div>
 
 </body>
@@ -18,7 +32,26 @@
     new Vue({
         el:"#root",
         data:{
-
+            school:{
+                name:"学校",
+                address:"北京"
+            },
+            student:{
+                name:"tom",
+                age:{
+                    maxAge:40,
+                    minAge:29
+                },
+                friends:[
+                    {name:'jerry',age:35},
+                    {name:'tony',age:36}
+                ]
+            }
+        },
+        methods:{
+            addSex(){
+                this.$set(this.student,'sex','男')
+            }
         }
     })
 </script>
